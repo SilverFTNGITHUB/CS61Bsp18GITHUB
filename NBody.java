@@ -6,6 +6,11 @@ public class NBody {
 	 * @param strInput
 	 */
 	public static void main(String[] strInput) {
+		if(strInput.length < 3)
+		{
+			System.out.println("WRONG number of inputs.");
+			return;
+		}
 		double T = Double.parseDouble(strInput[0]);
 		double dt = Double.parseDouble(strInput[1]);
 		String fileName = strInput[2];
