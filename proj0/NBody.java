@@ -39,10 +39,10 @@ public class NBody {
 			StdDraw.clear();
 			StdDraw.picture(0, 0, "./images/starfield.jpg", 2 * dRadius, 2 * dRadius);
 			for (int i = 0; i < nPlanetsNum; i++) {
-				StdDraw.picture(planets[i].xxPos, planets[i].yyPos, "./images/" + planets[i].imgFileName);
+				planets[i].draw();
 			}
 			StdDraw.show();
-			StdDraw.pause(1);
+			StdDraw.pause(10);
 			dTime += dt;
 		}
 		StdOut.printf("%d\n", planets.length);

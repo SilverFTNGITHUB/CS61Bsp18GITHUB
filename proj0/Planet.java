@@ -1,6 +1,6 @@
 
 public class Planet {
-	public static final double G = 6.67e-11;
+	private static final double G = 6.67e-11;
 	public double xxPos = 0, yyPos = 0, xxVel = 0, yyVel = 0, mass = 0;
 	public String imgFileName = "";
 
@@ -30,11 +30,12 @@ public class Planet {
 	 */
 	public Planet(Planet p) {
 		// this = p;
-		xxPos = p.xxPos;
-		yyPos = p.yyPos;
-		xxVel = p.xxVel;
-		yyVel = p.yyVel;
-		mass = p.mass;
+		this.xxPos = p.xxPos;
+		this.yyPos = p.yyPos;
+		this.xxVel = p.xxVel;
+		this.yyVel = p.yyVel;
+		this.mass = p.mass;
+		this.imgFileName = p.imgFileName;
 	}
 
 	/**
@@ -139,14 +140,17 @@ public class Planet {
 	 * @param forceY
 	 * @return true-normal false-error (mass == 0)
 	 */
-	public boolean update(double dt, double forceX, double forceY) {
+	public void update(double dt, double forceX, double forceY) {
 		if (this.mass == 0)
-			return false;
+			return;
 		this.xxVel += dt * (forceX / this.mass);
 		this.yyVel += dt * (forceY / this.mass);
 		this.xxPos += dt * xxVel;
 		this.yyPos += dt * yyVel;
-		return true;
+	}
+	
+	public void draw() {
+		StdDraw.picture(this.xxPos, this.yyPos, "./images/" + this.imgFileName);
 	}
 	
 
