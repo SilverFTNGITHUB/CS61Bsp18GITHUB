@@ -1,57 +1,63 @@
 public class ArrayDeque<T> {
     /**
      * The starting size of your array should be 8.
-     * The amount of memory that your program uses at any given time must be proportional to the number of items.
-     * For example, if you add 10,000 items to the deque, and then remove 9,999 items, you shouldn’t still be using an array of length 10,000ish.
-     * For arrays of length 16 or more, your usage factor should always be at least 25%. For smaller arrays, your usage factor can be arbitrarily low.
+     * The amount of memory that your program uses at any given time must be proportional to the
+     * number of items.
+     * For example, if you add 10,000 items to the deque, and then remove 9,999 items, you
+     * shouldn’t still be using an array of length 10,000ish.
+     * For arrays of length 16 or more, your usage factor should always be at least 25%.
+     * For smaller arrays, your usage factor can be arbitrarily low.
      */
     private T[] arrayItems;
     private int size;
     private int nStart;//one before first item
     private int nEnd;//one after last item
 
-    public static void main(String[] args) {
-        ArrayDeque<Integer> aList = new ArrayDeque<Integer>();
-        //aList.printDeque();
-        int size = 35;
-        for (int i = 0; i < size; i++) {
-            aList.addFirst(size - i - 1);
-        }
-        aList.printDeque();
-        System.out.println(aList.size);
-        System.out.println(aList.nStart);
-        System.out.println(aList.nEnd);
-        size = 35;
-        for (int i = 0; i < size; i++) {
-            aList.addLast(i);
-        }
-        aList.printDeque();
-        System.out.println(aList.size);
-        System.out.println(aList.nStart);
-        System.out.println(aList.nEnd);
-        System.out.println("*********DELETE************");
-        size = 40;
-        for (int i = 0; i < size; i++) {
-            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList.removeFirst() + ", usage factor = " + aList.getUsageFactor());
-        }
-        aList.printDeque();
-        size = 33;
-        for (int i = 0; i < size; i++) {
-            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList.removeLast() + ", usage factor = " + aList.getUsageFactor());
-        }
-        System.out.println("**********GET***********");
-        size = 8;
-        for (int i = 0; i < size; i++) {
-            aList.addFirst(size - i - 1);
-        }
-        aList.printDeque();
-        for (int i = 0; i < size; i++) {
-            System.out.println("get index = " + i + ", item = " + aList.get(i));
-        }
-    }
+//    public static void main(String[] args) {//FIXME comment when submit
+//        ArrayDeque<Integer> aList = new ArrayDeque<Integer>();
+//        //aList.printDeque();
+//        int size = 35;
+//        for (int i = 0; i < size; i++) {
+//            aList.addFirst(size - i - 1);
+//        }
+//        aList.printDeque();
+//        System.out.println(aList.size);
+//        System.out.println(aList.nStart);
+//        System.out.println(aList.nEnd);
+//        size = 35;
+//        for (int i = 0; i < size; i++) {
+//            aList.addLast(i);
+//        }
+//        aList.printDeque();
+//        System.out.println(aList.size);
+//        System.out.println(aList.nStart);
+//        System.out.println(aList.nEnd);
+//        System.out.println("*********DELETE************");
+//        size = 40;
+//        for (int i = 0; i < size; i++) {
+//            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList
+//            .removeFirst() + ", usage
+//            factor = " + aList.getUsageFactor());
+//        }
+//        aList.printDeque();
+//        size = 33;
+//        for (int i = 0; i < size; i++) {
+//            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList
+//            .removeLast() + ", usage
+//            factor = " + aList.getUsageFactor());
+//        }
+//        System.out.println("**********GET***********");
+//        size = 8;
+//        for (int i = 0; i < size; i++) {
+//            aList.addFirst(size - i - 1);
+//        }
+//        aList.printDeque();
+//        for (int i = 0; i < size; i++) {
+//            System.out.println("get index = " + i + ", item = " + aList.get(i));
+//        }
+//    }
 
     /**
-     *
      * @return usage factor of arrayItem
      */
     private float getUsageFactor() {
@@ -131,20 +137,24 @@ public class ArrayDeque<T> {
         } catch (Exception e) {
             System.out.println("resize错误");
         }
-        //System.out.print("doing resize: from arrayitem[" + arrayItems.length + "], size = " + size + " -> To ");//FIXME comment when submit
+        //System.out.print("doing resize: from arrayitem[" + arrayItems.length + "], size = " +
+        // size + " -> To ");
+        // FIXME comment when submit
         T[] newArray = (T[]) (new Object[newSize]);
         if (nStart < nEnd) {
             // S -> E
             System.arraycopy(arrayItems, nStart, newArray, 0, nEnd - nStart);//also copy [nStart]
         } else {
             // S -> length - 1, 0 -> E
-            System.arraycopy(arrayItems, nStart, newArray, 0, arrayItems.length - nStart);//also copy [nStart]
+            System.arraycopy(arrayItems, nStart, newArray, 0, arrayItems.length - nStart);//also
+            // copy [nStart]
             System.arraycopy(arrayItems, 0, newArray, arrayItems.length - nStart, nEnd);
         }
         arrayItems = newArray;
         nStart = 0;
         nEnd = size + 1;
-        //System.out.println("arrayitem[" + arrayItems.length + "], size = " + size + ".");//FIXME comment when submit
+        //System.out.println("arrayitem[" + arrayItems.length + "], size = " + size + ".");
+        // FIXME comment when submit
         return 0;
     }
 

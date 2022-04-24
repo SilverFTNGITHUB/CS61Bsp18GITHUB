@@ -4,42 +4,44 @@ public class LinkedListDeque<T> {
 
     //when deal with DEQUE LIST remember to change !!BOTH!! "<-" and "->"
 
-    public static void main(String[] args) {
-        //ArrayDeque<Integer> aList = new ArrayDeque<Integer>();
-        LinkedListDeque aList = new LinkedListDeque();
-        //aList.printDeque();
-        int size = 35;
-        for (int i = 0; i < size; i++) {
-            aList.addFirst(size - i - 1);
-        }
-        aList.printDeque();
-        System.out.println(aList.size);
-        size = 35;
-        for (int i = 0; i < size; i++) {
-            aList.addLast(i);
-        }
-        aList.printDeque();
-        System.out.println(aList.size);
-        System.out.println("*********DELETE************");
-        size = 40;
-        for (int i = 0; i < size; i++) {
-            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList.removeFirst());
-        }
-        aList.printDeque();
-        size = 33;
-        for (int i = 0; i < size; i++) {
-            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList.removeLast());
-        }
-        System.out.println("**********GET***********");
-        size = 8;
-        for (int i = 0; i < size; i++) {
-            aList.addFirst(size - i - 1);
-        }
-        aList.printDeque();
-        for (int i = 0; i < size; i++) {
-            System.out.println("get index = " + i + ", item = " + aList.get(i));
-        }
-    }
+//    public static void main(String[] args) {//FIXME comment when submit
+//        //ArrayDeque<Integer> aList = new ArrayDeque<Integer>();
+//        LinkedListDeque aList = new LinkedListDeque();
+//        //aList.printDeque();
+//        int size = 35;
+//        for (int i = 0; i < size; i++) {
+//            aList.addFirst(size - i - 1);
+//        }
+//        aList.printDeque();
+//        System.out.println(aList.size);
+//        size = 35;
+//        for (int i = 0; i < size; i++) {
+//            aList.addLast(i);
+//        }
+//        aList.printDeque();
+//        System.out.println(aList.size);
+//        System.out.println("*********DELETE************");
+//        size = 40;
+//        for (int i = 0; i < size; i++) {
+//            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList
+//            .removeFirst());
+//        }
+//        aList.printDeque();
+//        size = 33;
+//        for (int i = 0; i < size; i++) {
+//            System.out.println("delete count = " + (i + 1) + ", deleted item = " + aList
+//            .removeLast());
+//        }
+//        System.out.println("**********GET***********");
+//        size = 8;
+//        for (int i = 0; i < size; i++) {
+//            aList.addFirst(size - i - 1);
+//        }
+//        aList.printDeque();
+//        for (int i = 0; i < size; i++) {
+//            System.out.println("get index = " + i + ", item = " + aList.get(i));
+//        }
+//    }
 
     /**
      *
@@ -162,7 +164,9 @@ public class LinkedListDeque<T> {
      * @param item: The item need to be added
      */
     public void addFirst(T item) {
-        LinkedListNode newNode = new LinkedListNode(item, this.sentinel, this.sentinel.next);//set "<-" and "->" of new node
+        LinkedListNode newNode = new LinkedListNode(item, this.sentinel, this.sentinel.next);
+        //set "<-" and "->" of
+        // new node
         this.sentinel.next.prior = newNode;// change "<-" of old front
         this.sentinel.next = newNode;//change "->" of sentinel
         size++;
@@ -174,7 +178,9 @@ public class LinkedListDeque<T> {
      * @param item: The item need to be added
      */
     public void addLast(T item) {
-        LinkedListNode newNode = new LinkedListNode(item, this.sentinel.prior, this.sentinel);//set "<-" and "->" of new node
+        LinkedListNode newNode = new LinkedListNode(item, this.sentinel.prior, this.sentinel);
+        //set "<-" and "->" of
+        // new node
         this.sentinel.prior.next = newNode;//change "->" of old end
         this.sentinel.prior = newNode;//change "<-" of sentinel
         size++;
